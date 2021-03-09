@@ -34,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [Lede_x86_64,Lede_jet]
+        target: [Lede_jet]
 #Lede_x86_64,Lede_jet
 
     steps:
