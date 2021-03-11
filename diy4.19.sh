@@ -22,15 +22,16 @@ sed -i '$a src-git diy https://github.com/firker/diy-ziyong' feeds.conf.default
 sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 
 git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
-git clone -b 18.06 https://github.com/garypang13/luci-theme-edge.git package/luci-theme-edge
+#git clone -b 18.06 https://github.com/garypang13/luci-theme-edge.git package/luci-theme-edge
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
-git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
+#git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
 git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
-git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
-git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/luci-app-jd-dailybonus
-git clone https://github.com/jerrykuku/luci-app-vssr.git  package/luci-app-vssr
-git clone https://github.com/project-lede/luci-app-godproxy.git package/luci-app-godproxy
-git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
-# git clone https://github.com/garypang13/luci-app-dnsfilter.git package/luci-app-dnsfilter
-git clone https://github.com/BCYDTZ/luci-app-UUGameAcc.git package/luci-app-UUGameAcc
-git clone https://github.com/ITdesk01/jd_openwrt_script.git package/jd_openwrt_script
+git clone https://github.com/siropboy/sirpdboy-package package/luci-app-control-weburl
+#git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
+#git clone https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/luci-app-jd-dailybonus
+#git clone https://github.com/jerrykuku/luci-app-vssr.git  package/luci-app-vssr
+#git clone https://github.com/project-lede/luci-app-godproxy.git package/luci-app-godproxy
+#git clone https://github.com/garypang13/luci-app-bypass.git package/luci-app-bypass
+#git clone https://github.com/garypang13/luci-app-dnsfilter.git package/luci-app-dnsfilter
+#git clone https://github.com/BCYDTZ/luci-app-UUGameAcc.git package/luci-app-UUGameAcc
+#git clone https://github.com/ITdesk01/jd_openwrt_script.git package/jd_openwrt_script
