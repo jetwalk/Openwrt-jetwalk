@@ -187,7 +187,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
 
     - name: 微信报告
-      uses: emon100/Action-SCKEY@master
+      uses: emon100/Action-Serverchan@master
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         SCKEY: ${{ secrets.SCKEY }}
