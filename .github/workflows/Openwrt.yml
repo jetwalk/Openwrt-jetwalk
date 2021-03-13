@@ -23,6 +23,9 @@ env:
   LIENOL: https://github.com/Lienol/openwrt
   PROJECT: https://github.com/immortalwrt/immortalwrt
   GITURL: https://github.com/${{github.repository}}
+  Author: ${{github.actor}}
+  Run_number: ${{github.run_number}}
+  Run_workflow: ${{github.workflow}}
   TZ: Asia/Shanghai
 
 jobs:
@@ -45,7 +48,6 @@ jobs:
       run: |
         source "${GITHUB_WORKSPACE}/build/${{matrix.target}}/settings.ini"
         echo "Modelfile=${{matrix.target}}" >> $GITHUB_ENV
-        echo "Author=${{github.actor}}" >> $GITHUB_ENV
         echo "REPO_URL=${REPO_URL}" >> $GITHUB_ENV
         echo "REPO_BRANCH=${REPO_BRANCH}" >> $GITHUB_ENV
         echo "CONFIG_FILE=${CONFIG_FILE}" >> $GITHUB_ENV
@@ -61,16 +63,15 @@ jobs:
         echo "REGULAR_UPDATE=${REGULAR_UPDATE}" >> $GITHUB_ENV
         echo "Updete_firmware=${Updete_firmware}" >> $GITHUB_ENV
         echo "Extension=${Extension}" >> $GITHUB_ENV
-
     - name: 微信通知
       uses: emon100/Action-Serverchan@v2
       if: env.SERVERCHAN_SCKEY == 'true'
       with:
         SCKEY: ${{ secrets.SCKEY }}
         text: 主人${{matrix.target}}编译开始啦
-        desp: 主人您要编译的[${{matrix.target}}]固件正在努力耕耘中,请耐心等待......
+        desp: 主人您要编译的[${{matrix.target}}]固件正在努力耕耘中(#${{github.run_number}}),请耐心等待......
      
-    - name: 整理编译环境
+    - name: 设置编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -93,7 +94,7 @@ jobs:
         echo "PATH1=${GITHUB_WORKSPACE}/openwrt/build/${{matrix.target}}" >> $GITHUB_ENV
         echo "artifact=${GITHUB_WORKSPACE}/openwrt/bin/Firmware" >> $GITHUB_ENV
     
-    - name: 整理脚本文件
+    - name: 调整脚本文件
       run: |
         git clone -b main https://github.com/281677160/Custom "${GITHUB_WORKSPACE}/build/common"
         cp -Rf `find ./ -maxdepth 1 -type d ! -path './openwrt' ! -path './'` openwrt
@@ -109,7 +110,6 @@ jobs:
       run: |
         cd openwrt
         source "${PATH1}/common.sh" && Diy_notice
-
     - name: 加载源,patch补丁和自定义设置
       run: |
         cd openwrt
@@ -124,10 +124,6 @@ jobs:
         /bin/bash "${PATH1}/$DIY_P1_SH"
         ./scripts/feeds clean
         ./scripts/feeds update -a && ./scripts/feeds install -a
-        cp -Rf "${PATH1}/files" ./
-        chmod -R +x ${Home}/files
-        cp -Rf "${PATH1}/diy"/* ./
-        source "${PATH1}/common.sh" && Diy_all2
         if [[ "${REPO_URL}" == "${LEDE}" ]]; then
           source "${PATH1}/common.sh" && Diy_lede2
           echo "NAME2=Lede" >> $GITHUB_ENV
@@ -141,8 +137,17 @@ jobs:
           echo "NAME2=Project" >> $GITHUB_ENV
           echo "ZUOZHE=ctcgfw" >> $GITHUB_ENV
         fi
+        source "${PATH1}/common.sh" && Diy_all2
+        if [ -n "$(ls -A "${PATH1}/files" 2>/dev/null)" ]; then
+          cp -Rf "${PATH1}/files" "${Home}" && chmod -R +x ${Home}/files
+        fi
+        if [ -n "$(ls -A "${PATH1}/diy" 2>/dev/null)" ]; then
+          cp -Rf "${PATH1}"/diy/* "${Home}"
+        fi
+        if [ -n "$(ls -A "${PATH1}/patches" 2>/dev/null)" ]; then
+          find "${PATH1}/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 --forward --no-backup-if-mismatch"
+        fi
         /bin/bash "${PATH1}/$DIY_P2_SH"
-        find "${PATH1}/patches" -type f -name '*.patch' -print0 | sort -z | xargs -I % -t -0 -n 1 sh -c "cat '%'  | patch -d './' -p1 --forward --no-backup-if-mismatch"
         ./scripts/feeds install -a
         [ -e "$PATH1/$CONFIG_FILE" ] && mv "$PATH1/$CONFIG_FILE" .config
         if [[ "${REGULAR_UPDATE}" == "true" ]]; then
@@ -157,18 +162,11 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
     
-    - name: 下载软件包
-      id: package
+    - name: 为编译做最后处理
       run: |
         cd openwrt
+        source "${PATH1}/common.sh" && Diy_chajian
         make defconfig
-        make download -j8
-        find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
-    
-    - name: 准备就绪
-      run: |
-        cd openwrt
         source "${PATH1}/common.sh" && Diy_adgu
         if [ "${REGULAR_UPDATE}" == "true" ]; then
           source "${PATH1}/upgrade.sh" && Diy_Part2
@@ -179,7 +177,14 @@ jobs:
         cd openwrt
         source "${PATH1}/upgrade.sh"
         source "${PATH1}/common.sh" && Diy_xinxi
-
+    
+    - name: 下载软件包
+      id: package
+      run: |
+        cd openwrt
+        make download -j8
+        find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
     - name: 开始编译固件
       id: compile
       run: |
@@ -199,12 +204,11 @@ jobs:
          grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > NAME1
          [ -s NAME1 ] && echo "NAME1=$(cat NAME1)" >> $GITHUB_ENV
         fi
-
     - name: 上传bin文件夹(固件+ipk)在github actions
       uses: actions/upload-artifact@v2
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
-        name: OpenWrt_bin_${{ env.NAME2 }}_${{ env.NAME1 }}_${{ env.date }}
+        name: Bin_filename+ipk_${{ env.NAME2 }}_${{ env.NAME1 }}_${{ env.date }}
         path: openwrt/bin
 
     - name: 编译N1机型时,打包（N1、微加云、贝壳云、我家云、S9xxx）固件
@@ -270,7 +274,6 @@ jobs:
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
-
     - name: 把定时更新固件发布到云端
       uses: softprops/action-gh-release@v1
       if: steps.organizer.outputs.status == 'success' && env.REGULAR_UPDATE == 'true'
@@ -284,7 +287,7 @@ jobs:
     - name: 整理发布信息
       if: steps.organizer.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true'
       run: |
-        echo "### 发布于$(date +"%Y年%m月%d号-%H点%M分")" > update_log.txt
+        echo "### (#${{github.run_number}})$(date +"%Y年%m月%d号-%H点%M分")" > update_log.txt
         curl -fsSL git.io/file-transfer | sh
         ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         echo "##### 奶牛快传：$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >> update_log.txt
@@ -307,4 +310,4 @@ jobs:
       with:
         SCKEY: ${{ secrets.SCKEY }}
         text: 恭喜主人${{ env.NAME2 }}_${{ env.NAME1 }}固件编译成功！
-        desp: 我亲爱的主人您使用${{matrix.target}}文件夹编译的[ ${{ env.NAME2 }}-${{ env.NAME1 }} ]固件顺利编译完成了！
+        desp: 我亲爱的主人您使用${{matrix.target}}文件夹编译的[ ${{ env.NAME2 }}-${{ env.NAME1 }} ]固件(#${{github.run_number}})顺利编译完成了！
