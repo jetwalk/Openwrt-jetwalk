@@ -8,8 +8,8 @@
 # Blog: https://p3terx.com
 #=============================================================
 
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.2/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 
 
 # Uncomment a feed source
@@ -22,7 +22,7 @@ sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makef
 # git clone https://github.com/fw876/helloworld.git package/ssr
 git clone https://github.com/firker/diy-ziyong.git package/diy-ziyong
 # git clone -b 18.06 https://github.com/garypang13/luci-theme-edge.git package/luci-theme-edge
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  package/luci-theme-argon-18.06
 # git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
 # git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
 # git clone https://github.com/kiddin9/openwrt-bypass.git package/openwrt-bypass
