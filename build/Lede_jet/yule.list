@@ -46,9 +46,6 @@ DOMAIN,itvpnpmobile-a.akamaihd.net
 DOMAIN-SUFFIX,itv.com
 DOMAIN-SUFFIX,itvstatic.com
 #小视频
-#DOMAIN-KEYWORD,-dy-
-#DOMAIN-KEYWORD,-dy
-#DOMAIN-KEYWORD,douyin
 DOMAIN-SUFFIX,huoshan.com
 DOMAIN-SUFFIX,hs.pstatp.com
 DOMAIN-SUFFIX,hs.ixigua.com
@@ -61,12 +58,10 @@ DOMAIN-SUFFIX,yximgs.com
 DOMAIN-KEYWORD,xiaohongshu
 DOMAIN-KEYWORD,xhscdn
 #抖音
+DOMAIN-KEYWORD,-dy-
+DOMAIN-KEYWORD,-dy
+DOMAIN-KEYWORD,douyin
 DOMAIN-SUFFIX,amemv.com
-DOMAIN-SUFFIX,douyincdn.com
-DOMAIN-SUFFIX,douyinpic.com
-DOMAIN-SUFFIX,douyinstatic.com
-DOMAIN-SUFFIX,douyinvod.com
-DOMAIN-SUFFIX,idouyinvod.com
 DOMAIN-SUFFIX,ixigua.com
 DOMAIN-SUFFIX,ixiguavideo.com
 DOMAIN-SUFFIX,pstatp.com
