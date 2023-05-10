@@ -12,4 +12,5 @@ IP-CIDR,159.65.77.153/32,no-resolve
 IP-CIDR,159.89.129.146/32,no-resolve
 IP-CIDR,159.89.142.52/32,no-resolve
 IP-CIDR,165.227.63.200/32,no-resolve
-IP-CIDR6,2602:fe90:1:1::7578:192c/128,no-resolve
+IP-CIDR,213.59.118.207/32,no-resolve
+IP-CIDR6,2602:fe90:300:1a1::b20e:670a/128,no-resolve
