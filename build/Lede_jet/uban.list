@@ -1,8 +1,8 @@
-DOMAIN-SUFFIX,checkipv6.dyndns.org,DIRECT
-DOMAIN-SUFFIX,checkip.synology.com,DIRECT
-DOMAIN-SUFFIX,checkipv6.synology.com,DIRECT
-DOMAIN-SUFFIX,pool.ntp.org,DIRECT
-DOMAIN-SUFFIX,emby.jetwalk.cf,DIRECT
+DOMAIN-SUFFIX,checkipv6.dyndns.org
+DOMAIN-SUFFIX,checkip.synology.com
+DOMAIN-SUFFIX,checkipv6.synology.com
+DOMAIN-SUFFIX,pool.ntp.org
+DOMAIN-SUFFIX,vwook.com
 DOMAIN-SUFFIX,xftld.org
 IP-CIDR,206.189.214.49/32,no-resolve
 IP-CIDR,104.248.79.120/32,no-resolve
