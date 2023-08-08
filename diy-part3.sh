@@ -13,7 +13,7 @@ sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt by wt '/g"
 sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-wt'/g" ./package/base-files/files/bin/config_generate
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz-default-settings
-curl -fsSL  https://raw.githubusercontent.com/firkerword/luci-app-bypass/main/Makefile > ./package/luci-app-bypass/Makefile
+# curl -fsSL  https://raw.githubusercontent.com/firkerword/luci-app-bypass/main/Makefile > ./package/luci-app-bypass/Makefile
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.69/g' package/base-files/files/bin/config_generate
 # rm -rf ./package/lean/dnsforwarder
