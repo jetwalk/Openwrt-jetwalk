@@ -29,7 +29,7 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luc
 # git clone https://github.com/firkerword/luci-app-lucky.git package/lucky
 # git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 # git clone https://github.com/siropboy/sirpdboy-package package/sirpdboy-package
-svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/luci-app-bypass
+# svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-bypass package/luci-app-bypass
 git clone https://github.com/xiaorouji/openwrt-passwall.git package/openwrt-passwall
 # git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
 git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
