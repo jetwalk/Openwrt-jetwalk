@@ -36,8 +36,9 @@ git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
 git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall
 # git clone https://github.com/dwj0/luci-app-sms-tool.git package/luci-app-sms-tool
 # git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
-git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
-git clone https://github.com/firkerword/luci-app-parentcontrol.git package/parentcontrol
+# git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+# git clone https://github.com/firkerword/luci-app-parentcontrol.git package/parentcontrol
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
 # git clone https://github.com/firkerword/luci-app-smartdns.git package/luci-app-smartdns
 # git clone https://github.com/firkerword/smartdns.git package/smartdns
 # git clone https://github.com/firkerword/luci-app-mosdns.git package/OpenWrt-mosdns
