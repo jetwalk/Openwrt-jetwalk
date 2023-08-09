@@ -16,7 +16,7 @@ sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-jet'/g" ./package/base-files/file
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.50.69/g' package/base-files/files/bin/config_generate
-# rm -rf ./feeds/luci/applications/luci-app-unblockmusic
+rm -rf ./feeds/luci/applications/luci-app-unblockmusic
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 rm -rf ./feeds/packages/net/mosdns
 rm -rf ./package/lean/luci-theme-argon
