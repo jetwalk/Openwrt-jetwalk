@@ -1,4 +1,4 @@
-#!/bin/bash
+-#!/bin/bash
 #============================================================
 # https://github.com/P3TERX/Actions-OpenWrt
 # File name: diy-part2.sh
@@ -16,15 +16,20 @@ sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-jet'/g" ./package/base-files/file
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.50.69/g' package/base-files/files/bin/config_generate
-# rm -rf ./feeds/luci/applications/luci-app-unblockmusic
-# svn co https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+sed -i 's/luci-theme-bootstrap/luci-theme-opentomcat/g' ./feeds/luci/collections/luci/Makefile
+# rm -rf ./feeds/luci/applications/luci-app-qbittorrent
+rm -rf ./feeds/luci/applications/luci-app-wechatpush
 rm -rf ./feeds/luci/applications/luci-app-mosdns
-rm -rf ./feeds/packages/net/mosdns
-rm -rf ./package/lean/luci-theme-argon
-# rm -rf ./package/lean/luci-app-serverchan
-rm -rf ./package/diy-ziyong/adguardhome
+# rm -rf ./package/diy-ziyong/adguardhome
+rm -rf ./package/diy-ziyong/smartdns
 rm -rf ./feeds/packages/net/adguardhome
-# rm -rf ./feeds/packages/net/smartdns
-rm -rf ./target/linux/generic/pending-5.10/701-net-ethernet-mtk_eth_soc-add-ipv6-flow-offloading-support.patch
+rm -rf ./feeds/packages/net/smartdns
+rm -rf ./feeds/packages/net/mosdns
+# rm -rf ./package/mosdns/mosdns
+rm -rf ./feeds/luci/themes/luci-theme-argon
+# rm -rf ./package/openwrt-passwall/v2ray-geodata
+rm -rf ./package/ssr/v2ray-geodata
 # rm -rf ./feeds/packages/net/https-dns-proxy
 # svn co https://github.com/Lienol/openwrt-packages/trunk/net/https-dns-proxy feeds/packages/net/https-dns-proxy
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
