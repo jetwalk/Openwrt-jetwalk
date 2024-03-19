@@ -3,6 +3,7 @@ DOMAIN-SUFFIX,checkipv6.dyndns.org
 DOMAIN-SUFFIX,checkip.synology.com
 DOMAIN-SUFFIX,checkipv6.synology.com
 DOMAIN-SUFFIX,pool.ntp.org
+DOMAIN-SUFFIX,jmsooo.com
 IP-CIDR,206.189.214.49/32,no-resolve
 IP-CIDR,104.248.79.120/32,no-resolve
 IP-CIDR,138.68.28.244/32,no-resolve
