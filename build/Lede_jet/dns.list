@@ -8,4 +8,4 @@ IP-CIDR,9.9.9.9/32,no-resolve
 IP-CIDR,149.112.112.112/32,no-resolve
 IP-CIDR,45.11.45.11/32,no-resolve
 DOMAIN-SUFFIX,dns.google.com
-DOMAIN-SUFFIX,xftld.org
+
