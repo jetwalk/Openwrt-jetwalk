@@ -27,7 +27,6 @@ mv accesscontrol-plus/luci-app-accesscontrol-plus  package/luci-app-accesscontro
 
 git clone --depth=1 -b master https://github.com/rufengsuixing/luci-app-zerotier package/luci-app-zerotier
 
-git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 
 
 # update golang
