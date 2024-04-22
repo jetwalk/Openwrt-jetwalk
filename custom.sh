@@ -26,8 +26,7 @@ git clone --depth=1 -b main https://github.com/kingyond/luci-app-accesscontrol-p
 mv accesscontrol-plus/luci-app-accesscontrol-plus  package/luci-app-accesscontrol-plus && rm -rf accesscontrol-plus
 
 git clone --depth=1 -b master https://github.com/rufengsuixing/luci-app-zerotier package/luci-app-zerotier
-
-
+git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
 
 # update golang
 # pushd feeds/packages/lang
