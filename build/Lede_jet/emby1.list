@@ -2,3 +2,10 @@ DOMAIN-SUFFIX,emby.wtf
 DOMAIN-SUFFIX,pornemby.club
 DOMAIN-SUFFIX,xftld.org
 DOMAIN-SUFFIX,api.cloudflare.com
+IP-CIDR6,2606:4700:300a::/48,no-resolve
+IP-CIDR,104.19.192.177/32,no-resolve
+IP-CIDR,104.19.193.29/32,no-resolve
+IP-CIDR,104.19.192.29/32,no-resolve
+IP-CIDR,104.19.192.174/32,no-resolve
+IP-CIDR,104.19.192.175/32,no-resolve
+IP-CIDR,104.19.192.176/32,no-resolve
