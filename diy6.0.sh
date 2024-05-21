@@ -46,9 +46,9 @@ git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
 # git clone https://github.com/dwj0/luci-app-sms-tool.git package/luci-app-sms-tool
 # git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
 # git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
-git clone https://github.com/firkerword/luci-app-parentcontrol.git package/parentcontrol
-git clone https://github.com/firkerword/luci-app-smartdns.git package/luci-app-smartdns
-git clone https://github.com/firkerword/smartdns.git package/smartdns
+#git clone https://github.com/firkerword/luci-app-parentcontrol.git package/parentcontrol
+#git clone https://github.com/firkerword/luci-app-smartdns.git package/luci-app-smartdns
+#git clone https://github.com/firkerword/smartdns.git package/smartdns
 # git clone https://github.com/firkerword/luci-app-mosdns.git package/OpenWrt-mosdns
 # git clone https://github.com/immortalwrt/homeproxy.git package/luci-app-homeproxy
 # git clone https://github.com/linkease/istore.git package/istore
@@ -59,7 +59,7 @@ merge_package https://github.com/vernesong/OpenClash OpenClash/luci-app-openclas
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
 find ./ | grep Makefile | grep mosdns | xargs rm -f
 
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-git clone https://github.com/sbwml/luci-app-dae package/dae
+#git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+#git clone https://github.com/sbwml/luci-app-dae package/dae
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
