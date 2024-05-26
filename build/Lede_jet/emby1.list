@@ -1,6 +1,5 @@
 DOMAIN-KEYWORD,pikpak
 DOMAIN-SUFFIX,xftld.org
-DOMAIN-SUFFIX,api.cloudflare.com
 IP-CIDR,104.19.192.177/32,no-resolve
 IP-CIDR,104.19.193.29/32,no-resolve
 IP-CIDR,104.19.192.29/32,no-resolve
