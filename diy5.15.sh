@@ -40,8 +40,8 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git package/luc
 # git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
 # git clone https://github.com/firkerword/luci-app-lucky.git package/lucky
 # git clone https://github.com/sbwml/luci-app-alist.git package/luci-app-alist
-git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
-git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
+#git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/openwrt-passwall
+#git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
 # git clone https://github.com/dwj0/luci-app-sms-tool.git package/luci-app-sms-tool
 # git clone -b master https://github.com/vernesong/OpenClash.git package/OpenClash
 # git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
@@ -55,10 +55,10 @@ git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
 # svn co https://github.com/kiddin9/openwrt-packages/trunk/adguardhome package/adguardhome
 # svn co https://github.com/kiddin9/openwrt-packages/trunk/luci-app-adguardhome package/luci-app-adguardhome
 merge_package https://github.com/vernesong/OpenClash OpenClash/luci-app-openclash
-find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
-find ./ | grep Makefile | grep mosdns | xargs rm -f
+#find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+#find ./ | grep Makefile | grep mosdns | xargs rm -f
 
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+#git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 #git clone https://github.com/sbwml/luci-app-dae package/dae
-git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+#git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
