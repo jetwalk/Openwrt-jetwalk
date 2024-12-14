@@ -26,3 +26,4 @@ IP-CIDR6,2a13:e2c4:fefc::/48,no-resolve
 IP-CIDR6,2a0e:97c0:7d4::/48,no-resolve
 IP-CIDR6,2401:b60:5::/48,no-resolve
 IP-CIDR,156.243.244.28/32,no-resolve
+IP-CIDR,156.226.173.153/32,no-resolve
