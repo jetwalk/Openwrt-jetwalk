@@ -1,24 +1,45 @@
--#!/bin/bash
-#============================================================
+#!/bin/bash
+#
+# Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
 # https://github.com/P3TERX/Actions-OpenWrt
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
-#============================================================
-sed -i '/DTS_DIR:=$(LINUX_DIR)/a\BUILD_DATE_PREFIX := $(shell date +'%F')' ./include/image.mk
-sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' ./include/image.mk
-# sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt by jet '/g" ./package/lean/default-settings/files/zzz-default-settings
-# sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-jet'/g" ./package/base-files/files/bin/config_generate
-# curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/poweroff.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_system/poweroff.htm 
-# curl -fsSL  https://raw.githubusercontent.com/siropboy/other/master/patch/poweroff/system.lua > ./feeds/luci/modules/luci-mod-admin-full/luasrc/controller/admin/system.lua
-# curl -fsSL  https://raw.githubusercontent.com/firkerword/KPR/main/logo.jpg > ./package/luci-app-serverchan/root/usr/bin/serverchan/api/logo.jpg
-# curl -fsSL  https://raw.githubusercontent.com/firkerword/KPR/main/cus_config.yaml > ./package/openwrt-mos/luci-app-mosdns/root/etc/mosdns/cus_config.yaml
-# wget https://raw.githubusercontent.com/firkerword/KPR/main/cus_config.yaml -O ./package/openwrt-mos/luci-app-mosdns/root/etc/mosdns/config.yaml
-# Modify default IP
-sed -i 's/192.168.1.1/192.168.50.69/g' package/base-files/files/bin/config_generate
+#
+
+sed -i '/CYXluq4wUazHjmCDBCqXF/d' package/lean/default-settings/files/zzz-default-settings    # 设置密码为空
+
+# Modify default theme（FROM uci-theme-bootstrap CHANGE TO luci-theme-material）
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
+
+# Modify some code adaptation
+#sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' feeds/luci/applications/luci-app-cpufreq/Makefile
+
+# Add autocore support for armvirt
+sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/lean/autocore/Makefile
+
+# Set DISTRIB_REVISION
+sed -i "s/OpenWrt /Deng Build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
+
+# Modify default IP（FROM 192.168.1.1 CHANGE TO 192.168.50.69）
+sed -i 's/192.168.1.1/192.168.50.69/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.50.69/g' package/base-files/luci2/bin/config_generate
+sed -i 's/192.168.1.1/192.168.50.69/g' package/base-files/Makefile
+sed -i 's/192.168.1.1/192.168.50.69/g' package/base-files/image-config.in
+
+# Modify system hostname（FROM OpenWrt CHANGE TO OpenWrt-N1）
+# sed -i 's/OpenWrt/OpenWrt-N1/g' package/base-files/files/bin/config_generate
+
+# Replace the default software source
+# sed -i 's#openwrt.proxy.ustclug.org#mirrors.bfsu.edu.cn\\/openwrt#' package/lean/default-settings/files/zzz-default-settings
+
+sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba4/files/smb.conf.template
+
+# 修复部分插件自启动脚本丢失可执行权限问题
+sed -i '/exit 0/i\chmod +x /etc/init.d/*' package/lean/default-settings/files/zzz-default-settings
 # rm -rf ./feeds/luci/applications/luci-app-qbittorrent
 # rm -rf ./feeds/luci/applications/luci-app-wechatpush
 rm -rf ./feeds/luci/applications/luci-app-mosdns
