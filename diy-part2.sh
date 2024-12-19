@@ -20,12 +20,12 @@ sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' ./include/image.mk
 sed -i 's/192.168.1.1/192.168.50.69/g' package/base-files/files/bin/config_generate
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 # rm -rf ./feeds/luci/applications/luci-app-qbittorrent
-rm -rf ./feeds/luci/applications/luci-app-wechatpush
+# rm -rf ./feeds/luci/applications/luci-app-wechatpush
 rm -rf ./feeds/luci/applications/luci-app-mosdns
 # rm -rf ./package/diy-ziyong/adguardhome
-rm -rf ./package/diy-ziyong/smartdns
+# rm -rf ./package/diy-ziyong/smartdns
 rm -rf ./feeds/packages/net/adguardhome
-rm -rf ./feeds/packages/net/smartdns
+# rm -rf ./feeds/packages/net/smartdns
 rm -rf ./feeds/packages/net/mosdns
 # rm -rf ./package/mosdns/mosdns
 rm -rf ./feeds/luci/themes/luci-theme-argon
