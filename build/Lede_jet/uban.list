@@ -3,5 +3,5 @@ DOMAIN-SUFFIX,wechat.cloudns.be
 IP-CIDR6,2400:e3e0:f5a9::/48,no-resolve
 IP-CIDR6,2401:b60:5::/48,no-resolve
 IP-CIDR6,2a13:e2c4:fefb::/48,no-resolve
-IP-CIDR,156.246.92.231/32,no-resolve
+IP-CIDR,156.246.90.222/32,no-resolve
 IP-CIDR,141.11.174.103/32,no-resolve
